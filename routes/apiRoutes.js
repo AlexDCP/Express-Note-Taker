@@ -1,5 +1,7 @@
 const app = require('express').Router();
+// this is a node module that generates an id for the notes to be able to delete them.
 const { v4: uuidv4 } = require('uuid');
+//imported helpers.
 const {
   readFromFile,
   readAndAppend,
@@ -17,18 +19,18 @@ app.delete('/:id', (req, res) => {
   readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
-      // Make a new array of all tips except the one with the ID provided in the URL
+      // Make a new array of all notes, except the one with id selected.
       const result = json.filter((note) => note.id !== noteId);
 
-      // Save that array to the filesystem
+      // adds new array of notes back
       writeToFile('./db/db.json', result);
 
       // Respond to the DELETE request
-      res.json(`Item ${noteId} has been deleted 🗑️`);
+      res.json(`Note ${noteId} has been deleted 🗑️`);
     });
 });
 
-// POST Route for a new UX/UI note
+// POST route to add the notes to the page.
 app.post('/', (req, res) => {
   console.log(req.body);
 
@@ -42,7 +44,7 @@ app.post('/', (req, res) => {
     };
 
     readAndAppend(newNote, './db/db.json');
-    res.json(`Tip added successfully 🚀`);
+    res.json(`Note added successfully 🚀`);
   } else {
     res.error('Error in adding notes');
   }
