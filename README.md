@@ -19,9 +19,9 @@ Follow the link provided in your terminal and take some notes!
 
 ## Usage
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+Deployed site: https://damp-atoll-35503.herokuapp.com/
+
+![screenshot](/images/exntscrnshot.JPG)
 
 ## Credits
 
